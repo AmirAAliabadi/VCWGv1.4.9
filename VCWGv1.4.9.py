@@ -1,3 +1,8 @@
+# VCWG to run 1 month of analysis
+# Ali Madadizadeh, Amir A. Aliabadi
+# Atmospheric Innovations Research (AIR) Laboratory, University of Guelph, Guelph, Canada
+# last update: 2025-02-20
+
 from UWG import UWG
 from BEMMonthly import BEMMonthly
 from BEMDiurnal import BEMDiurnal
@@ -7,11 +12,11 @@ import os
 # UWG will look for the .epw file in the UWG/resources/epw folder,
 # and the .uwg file in the UWG/resources/parameters folder.
 
-City= 'StJohns'
-epw_filename = 'ERA5-{}-2010.epw'.format(City)
-param_filename = 'initialize_{}_10.uwg'.format(City)        # .uwg file name
+City= 'Toronto'
+epw_filename = 'ERA5-{}-2020.epw'.format(City)
+param_filename = 'initialize_{}_11.uwg'.format(City)
 case_name = '{}-2020-Retrofit&RE-1'.format(City)
-Adv_ene_heat_mode = 3
+Adv_ene_heat_mode = 1
 Month = 'Nov.txt'
 OutputData = ['BEM', 'q_profiles', 'Tepw', 'TKE_profiles', 'Tr_profiles', 'Tu_profiles', 'U_profiles', 'V_profiles']
 
