@@ -15,7 +15,7 @@ from EconomicGHGAnalysis.FinalAnalysis import FinalAnalysis
 
 # Inputs
 class Saskatoon():
-    def __init__(self, City, BaseCaseName, CaseName, Senario,
+    def __init__(self, City, BaseCaseName, CaseName, Scenario,
                                                       NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                       BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
                                                       HPSwitch, EnvSwitch, CRSwitch, AirTSwitch,
@@ -39,7 +39,7 @@ class Saskatoon():
         # ElecEmissionIntensity [gCO2e kW-h^-1]
         ElecEmissionIntensity = pd.read_csv('resources/Economics/ElecEmissionIntensity.txt', delimiter=',')
         CarbonIntensityProjection = pd.read_csv('resources/Economics/carbon_intensity_projection.txt', delimiter=',')
-        outputFileNameCO2Saving = 'Output/EconomicGHGAnalysisResults/{}_{}_{}CO2Saving.txt'.format(City, CaseName, Senario)
+        outputFileNameCO2Saving = 'Output/EconomicGHGAnalysisResults/{}_{}_{}CO2Saving.txt'.format(City, CaseName, Scenario)
 
         #Social Carbon Cost [$ Tonne CO2^-1]
         SCC = pd.read_csv('resources/Economics/SocialCarbonCost.txt', delimiter=',')
@@ -48,9 +48,9 @@ class Saskatoon():
         rhoCH4 = 0.668  # density of methane [kgCH4 m^-3] at 293 K and 1 ATM
 
         # Output
-        outputFileName = 'Output/EconomicGHGAnalysisResults/{}_{}_{}.txt'.format(City, CaseName, Senario)
-        outputFileNamePayback = 'Output/EconomicGHGAnalysisResults/{}_{}_{}Payback.txt'.format(City, CaseName, Senario)
-        outputFileNameCO2Saving = 'Output/EconomicGHGAnalysisResults/{}_{}_{}CO2Saving.txt'.format(City, CaseName, Senario)
+        outputFileName = 'Output/EconomicGHGAnalysisResults/{}_{}_{}.txt'.format(City, CaseName, Scenario)
+        outputFileNamePayback = 'Output/EconomicGHGAnalysisResults/{}_{}_{}Payback.txt'.format(City, CaseName, Scenario)
+        outputFileNameCO2Saving = 'Output/EconomicGHGAnalysisResults/{}_{}_{}CO2Saving.txt'.format(City, CaseName, Scenario)
 
         #A gigajoule of natural gas is about 25.5 cubic metres at standard conditions.
         GJtoM3 = 25.5
@@ -214,28 +214,8 @@ class Saskatoon():
         Payback = []
         CO2Saving = []
 
-
-        # Embodied carbon factors
-        ECF_PV = 50  # kg CO2e m-2 (embodied carbon factor for photovoltaic panels)
-        ECF_WT = 100  # kg CO2e m-2 (embodied carbon factor for wind turbines)
-        ECF_BITES = 30  # kg CO2e m-3 (embodied carbon factor for BITES system)
-        ECF_ST = 40  # kg CO2e m-3 (embodied carbon factor for solar thermal)
-        ECF_PCM = 25  # kg CO2e m-3 (embodied carbon factor for PCM)
-        ECF_Insulation = 10  # kg CO2e m-2 (embodied carbon factor for insulation materials)
-        ECF_CoolRoof = 5  # kg CO2e m-2 (embodied carbon factor for cool roofing)
-
-        # Total embodied carbon
-        TotalEmbodiedCO2 = (PVSwitch * A_pv * ECF_PV + WTSwitch * A_wt * ECF_WT + BITESSwitch * V_bites * ECF_BITES + \
-                            + STSwitch * A_st * ECF_ST + PCMSwitch * V_pcm * ECF_PCM + CRSwitch* A_CR * ECF_CoolRoof)*A_building \
-                              + EnvSwitch * RvalueWall_quantity * A_walls * ECF_Insulation + EnvSwitch * RvalueRoof_quantity * A_Roof * ECF_Insulation\
-
-
         AnnVegCO2Saving = Additional_Trees * (CO2UptakeTree10Years / 10)
-        # Calculate present worth for multiple variables
-        #PresSCCSav = (-TotalEmbodiedCO2 / 1000) * SCC.iloc[0, 1]  # [$]
-        #TotalCO2Sav = -TotalEmbodiedCO2
 
-        print(TotalEmbodiedCO2,PresSCCSav)
         # Calculate present worth base and system cumulative gas and electricity cost
         for year in range(1, Nyears + 1):
             for month_idx, month in enumerate(months, start=0):

@@ -15,7 +15,7 @@ from EconomicGHGAnalysis.FinalAnalysis import FinalAnalysis
 
 # Inputs
 class Toronto():
-    def __init__(self, City, BaseCaseName, CaseName, Senario,
+    def __init__(self, City, BaseCaseName, CaseName, Scenario,
                                                       NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                       BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
                                                       HPSwitch, EnvSwitch, CRSwitch, AirTSwitch,
@@ -40,7 +40,7 @@ class Toronto():
         # ElecEmissionIntensity [gCO2e kW-h^-1]
         ElecEmissionIntensity = pd.read_csv('resources/Economics/ElecEmissionIntensity.txt', delimiter=',')
         CarbonIntensityProjection = pd.read_csv('resources/Economics/carbon_intensity_projection.txt', delimiter=',')
-        outputFileNameCO2Saving = 'Output/EconomicGHGAnalysisResults/{}_{}_{}CO2Saving.txt'.format(City, CaseName, Senario)
+        outputFileNameCO2Saving = 'Output/EconomicGHGAnalysisResults/{}_{}_{}CO2Saving.txt'.format(City, CaseName, Scenario)
 
         #Social Carbon Cost [$ Tonne CO2^-1]
         SCC = pd.read_csv('resources/Economics/SocialCarbonCost.txt', delimiter=',')
@@ -50,9 +50,9 @@ class Toronto():
         rhoCH4 = 0.668  # density of methane [kgCH4 m^-3] at 293 K and 1 ATM
 
         #Output
-        outputFileName = 'Output/EconomicGHGAnalysisResults/{}_{}_{}.txt'.format(City, CaseName, Senario)
-        outputFileNamePayback = 'Output/EconomicGHGAnalysisResults/{}_{}_{}Payback.txt'.format(City, CaseName, Senario)
-        outputFileNameCO2Saving = 'Output/EconomicGHGAnalysisResults/{}_{}_{}CO2Saving.txt'.format(City, CaseName, Senario)
+        outputFileName = 'Output/EconomicGHGAnalysisResults/{}_{}_{}.txt'.format(City, CaseName, Scenario)
+        outputFileNamePayback = 'Output/EconomicGHGAnalysisResults/{}_{}_{}Payback.txt'.format(City, CaseName, Scenario)
+        outputFileNameCO2Saving = 'Output/EconomicGHGAnalysisResults/{}_{}_{}CO2Saving.txt'.format(City, CaseName, Scenario)
 
         # Building envelope information
         A_building = 130  # Building footprint area [m^2]
@@ -60,7 +60,7 @@ class Toronto():
         A_Roof = A_building / (np.cos(18.4 * np.pi/180))      # Area of full roof [m^2]
 
         # Economic input
-        # Annual inflation rate:  https://www.macrotrends.net/countries/CAN/canada/inflation-rate-cpi
+        # Annual inflation rate: https://www.macrotrends.net/countries/CAN/canada/inflation-rate-cpi
         InfRate = 0.0183
         # Annual interest rate: https: // www150.statcan.gc.ca
         IntRate = 0.0378
@@ -153,11 +153,11 @@ class Toronto():
 
         # Retrofit case parameters information
         A_pv = 0.5        # Per building footprint area [m2 m-2]
-        A_wt = 0            # Per building footprint area [m2 m-2]
-        V_bites = 0.1        # Per building footprint area [m3 m-2]
+        A_wt = 0          # Per building footprint area [m2 m-2]
+        V_bites = 0.1     # Per building footprint area [m3 m-2]
         A_st = 0          # Per building footprint area [m2 m-2]
-        V_pcm = 0           # Per building footprint area [m3 m-2]
-        A_CR = 1            # Per building footprint area [m2 m-2]
+        V_pcm = 0         # Per building footprint area [m3 m-2]
+        A_CR = 1          # Per building footprint area [m2 m-2]
         RvalWallBaseCase = 3.6
         RvalRoofBaseCase = 5.46
         RvalWallCase = 2 * RvalWallBaseCase
@@ -179,11 +179,11 @@ class Toronto():
                  PCMSwitch * V_pcm * OMPCM + HPSwitch * OMHP + CRSwitch * OMCR) * A_building + Additional_Trees * OMVeg
 
         # Capital investment for the retrofitted system for the entire footprint of the house [$]
-        CIniRetrofit = ((PVSwitch * A_pv * PVPrice + WTSwitch * A_wt * WTPrice + STSwitch * A_st * STPrice + BITESSwitch * V_bites * BITESPrice +\
-                         PCMSwitch *  V_pcm * PCMPrice + CRSwitch * A_CR * CRPrice + HPSwitch * HPPrice) * A_building + EnvSwitch * EnvPrice +\
+        CIniRetrofit = (PVSwitch * A_pv * PVPrice + WTSwitch * A_wt * WTPrice + STSwitch * A_st * STPrice + BITESSwitch * V_bites * BITESPrice +\
+                         PCMSwitch * V_pcm * PCMPrice + CRSwitch * A_CR * CRPrice + HPSwitch * HPPrice) * A_building + EnvSwitch * EnvPrice +\
                         AirTSwitch * AirTPrice + TreePrice * Additional_Trees -(FedLoanCanGreener + PVSwitch * FedRebPV + PVSwitch * ProvHElPPV +\
                         AirTSwitch * FedRebAirSealing + EnvSwitch * FedRebInsulation + CRSwitch * A_CR * ProvRebCR * A_building +\
-                          HPSwitch * ProvHElPHP + WindowDoorReplaceSwitch * FedRebWindowsDoors))
+                          HPSwitch * ProvHElPHP + WindowDoorReplaceSwitch * FedRebWindowsDoors)
 
         CAnnIniBase = CIniBase * A_building * CRFFullPeriod
         CAnnIniRetrofit = CIniRetrofit * CRFFullPeriod
@@ -202,27 +202,7 @@ class Toronto():
         TotalElecProducedPVRetrofit, TotalElecProducedWTRetrofit, PresBaseOMCost, PresRetrofitOMCost, SumAnnualCostDiff, \
         PresFedLoanPayment, PresProvHELPHP, PresProvHELPPV , FuelCO2Saving, ElecCO2Saving,TotalCO2Sav,PresSCCSav = [0] * 25
  
- # Embodied carbon factors
-        ECF_PV = 50  # kg CO2e m-2 (embodied carbon factor for photovoltaic panels)
-        ECF_WT = 100  # kg CO2e m-2 (embodied carbon factor for wind turbines)
-        ECF_BITES = 30  # kg CO2e m-3 (embodied carbon factor for BITES system)
-        ECF_ST = 40  # kg CO2e m-3 (embodied carbon factor for solar thermal)
-        ECF_PCM = 25  # kg CO2e m-3 (embodied carbon factor for PCM)
-        ECF_Insulation = 10  # kg CO2e m-2 (embodied carbon factor for insulation materials)
-        ECF_CoolRoof = 5  # kg CO2e m-2 (embodied carbon factor for cool roofing)
-
-        # Total embodied carbon
-        TotalEmbodiedCO2 = (PVSwitch * A_pv * ECF_PV + WTSwitch * A_wt * ECF_WT + BITESSwitch * V_bites * ECF_BITES + \
-                            + STSwitch * A_st * ECF_ST + PCMSwitch * V_pcm * ECF_PCM + CRSwitch* A_CR * ECF_CoolRoof)*A_building \
-                              + EnvSwitch * RvalueWall_quantity * A_walls * ECF_Insulation + EnvSwitch * RvalueRoof_quantity * A_Roof * ECF_Insulation\
-
-
         AnnVegCO2Saving = Additional_Trees * (CO2UptakeTree10Years / 10)
-        # Calculate present worth for multiple variables
-        #PresSCCSav = (-TotalEmbodiedCO2 / 1000) * SCC.iloc[0, 1]  # [$]
-        #TotalCO2Sav = -TotalEmbodiedCO2
-
-        print(TotalEmbodiedCO2,PresSCCSav)
 
         # Calculate present worth base and system cumulative gas and electricity cost
         for year in range(1, Nyears + 1):
@@ -328,7 +308,7 @@ class Toronto():
             AnnualCO2Saving = FuelCO2Saving + ElecCO2Saving
             #print('Year, AnnualCO2Saving = ', year, round(AnnualCO2Saving))
 
-            CO2Saving.append (round(AnnualCO2Saving))
+            CO2Saving.append(round(AnnualCO2Saving))
 
         #Total Loan Payment
         PresLoanPayment = PresFedLoanPayment + PVSwitch * PresProvHELPPV + HPSwitch * PresProvHELPHP

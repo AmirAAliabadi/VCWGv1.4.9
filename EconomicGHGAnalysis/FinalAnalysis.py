@@ -58,23 +58,6 @@ class FinalAnalysis():
         # Saved Fuel [m^3 for Gas and L for Diesel]
 
         FuelSaving = (DiffFuelConsump) * A_building * Nyears
-        '''
-        if Region is 12 or 11:
-            MWDiesel = 130      # molecular weight of Diesel [gDiesel mol^-1]
-            MWCO2 = 44          # molecular weight of CO2 [gCO2 mol^-1]
-            rhoDiesel = 0.82    # density of Diesel [kgDiesel L-1]
-            FuelCO2Saving = FuelSaving * rhoDiesel * 8 * MWCO2 / MWDiesel  # Saved CO2 [kg]
-            
-        else:
-            MWCH4 = 12 + 4  # molecular weight of CH4 [gCH4 mol^-1]
-            MWCO2 = 44  # molecular weight of CO2 [gCO2 mol^-1]
-            rhoCH4 = 0.668  # density of methane [kgCH4 m^-3] at 293 K and 1 ATM
-            FuelCO2Saving = FuelSaving * rhoCH4 * MWCO2 / MWCH4  # Saved CO2 [kg]
-            
-        # Saved CO2 [kg]
-        ElecCO2Saving = (DiffElecConsump) * A_building * Nyears * ElecEmissionIntensity.iloc[8 ,Region ] /1000
-
-        '''
 
         # Total CO2 savings [kg]
         #TotalCO2Sav = VegCO2Saving + FuelCO2Saving + ElecCO2Saving
@@ -90,8 +73,6 @@ class FinalAnalysis():
         print('Social Cost of Carbon [kg]: ', round(CAnnSCCSav))
 
     # Writing Payback Data
-
-
         with open(outputFileNamePayback, "w") as outputFile:
             outputFile.write("# 0: Year, 1: Cost Difference [Dollars]\n")
             for year, payback in zip(range(1, len(Payback) + 1), Payback):
