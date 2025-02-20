@@ -23,7 +23,7 @@ from EconomicGHGAnalysis.Montreal import Montreal
 
 # Define lists instead of sets to maintain order
 City = ['Toronto', 'Vancouver', 'Calgary', 'StJohns', 'Winnipeg', 'Saskatoon', 'Halifax', 'Montreal', 'Whitehorse', 'Yellowknife']
-CaseName = ['PV', 'Retrofit', 'HP&BITES', 'ST', 'WT', 'CR', 'Retrofit&Re']
+CaseName = ['PV', 'Retrofit', 'HP&BITES', 'ST', 'WT', 'CR', 'Retrofit&RE']
 Elec_PriceInc = [0.01, 0.05, 0.1]
 Gas_PriceInc = [0.01, 0.05, 0.1]
 
@@ -140,7 +140,7 @@ for city in City:
                                                                 ElecPriceInc, GasPriceInc)
                         print(city, case, Scenario)
 
-            if case == 'Retrofit&Re':  # Corrected equality check
+            if case == 'Retrofit&RE':  # Corrected equality check
                 # Switches
                 NVSwitch = 0
                 WindowDoorReplaceSwitch = 1
@@ -251,7 +251,7 @@ for city in City:
                                                       ElecPriceInc, GasPriceInc)
                         print(city, case, Scenario)
 
-            if case == 'Retrofit&Re':  # Corrected equality check
+            if case == 'Retrofit&RE':  # Corrected equality check
                 # Switches
                 NVSwitch = 0
                 WindowDoorReplaceSwitch = 1
@@ -335,7 +335,7 @@ for city in City:
                                                       ElecPriceInc, GasPriceInc)
                         print(city, case, Scenario)
 
-            if case == 'Retrofit&Re':  # Corrected equality check
+            if case == 'Retrofit&RE':  # Corrected equality check
                 # Switches
                 NVSwitch = 0
                 WindowDoorReplaceSwitch = 1
@@ -446,7 +446,7 @@ for city in City:
                                                       ElecPriceInc, GasPriceInc)
                         print(city, case, Scenario)
 
-            if case == 'Retrofit&Re':  # Corrected equality check
+            if case == 'Retrofit&RE':  # Corrected equality check
                 # Switches
                 NVSwitch = 0
                 WindowDoorReplaceSwitch = 1
@@ -557,7 +557,7 @@ for city in City:
                                                       ElecPriceInc, GasPriceInc)
                         print(city, case, Scenario)
 
-            if case == 'Retrofit&Re':  # Corrected equality check
+            if case == 'Retrofit&RE':  # Corrected equality check
                 # Switches
                 NVSwitch = 0
                 WindowDoorReplaceSwitch = 1
@@ -639,7 +639,7 @@ for city in City:
                                                       ElecPriceInc)
                         print(city, case, Scenario)
 
-            if case == 'Retrofit&Re':  # Corrected equality check
+            if case == 'Retrofit&RE':  # Corrected equality check
                 # Switches
                 NVSwitch = 0
                 WindowDoorReplaceSwitch = 1
@@ -749,7 +749,7 @@ for city in City:
                                                       ElecPriceInc, GasPriceInc)
                         print(city, case, Scenario)
 
-            if case == 'Retrofit&Re':  # Corrected equality check
+            if case == 'Retrofit&RE':  # Corrected equality check
                 # Switches
                 NVSwitch = 0
                 WindowDoorReplaceSwitch = 1
@@ -887,7 +887,7 @@ for city in City:
                                                       ElecPriceInc, GasPriceInc)
                         print(city, case, Scenario)
 
-            if case == 'Retrofit&Re':  # Corrected equality check
+            if case == 'Retrofit&RE':  # Corrected equality check
                 # Switches
                 NVSwitch = 0
                 WindowDoorReplaceSwitch = 1
@@ -1024,7 +1024,7 @@ for city in City:
                                                       ElecPriceInc, GasPriceInc)
                         print(city, case, Scenario)
 
-            if case == 'Retrofit&Re':  # Corrected equality check
+            if case == 'Retrofit&RE':  # Corrected equality check
                 # Switches
                 NVSwitch = 0
                 WindowDoorReplaceSwitch = 1
@@ -1109,7 +1109,7 @@ for city in City:
                         print(city, case, Scenario)
 
 
-            if case == 'Retrofit&Re':  # Corrected equality check
+            if case == 'Retrofit&RE':  # Corrected equality check
                 # Switches
                 NVSwitch = 0
                 WindowDoorReplaceSwitch = 1

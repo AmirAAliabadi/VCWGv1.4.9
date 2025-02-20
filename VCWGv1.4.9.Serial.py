@@ -12,7 +12,7 @@ import os
 City = 'Toronto'
 epw_filename = 'ERA5-{}-2020.epw'.format(City)
 initialization_name = 'initialize_{}'.format(City)
-case_name = '{}-2020-Retrofit&RE-1'.format(City)
+case_name = '{}-2020-Retrofit&RE'.format(City)
 
 Months = ['Jan.txt', 'Feb.txt', 'Mar.txt', 'Apr.txt', 'May.txt', 'Jun.txt', 'Jul.txt', 'Aug.txt', 'Sep.txt', 'Oct.txt', 'Nov.txt', 'Dec.txt']
 OutputData = ['BEM', 'q_profiles', 'Tepw', 'TKE_profiles', 'Tr_profiles', 'Tu_profiles', 'U_profiles', 'V_profiles']

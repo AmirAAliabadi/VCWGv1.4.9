@@ -15,7 +15,7 @@ import os
 City= 'Toronto'
 epw_filename = 'ERA5-{}-2020.epw'.format(City)
 param_filename = 'initialize_{}_11.uwg'.format(City)
-case_name = '{}-2020-Retrofit&RE-1'.format(City)
+case_name = '{}-2020-Retrofit&RE'.format(City)
 Adv_ene_heat_mode = 1
 Month = 'Nov.txt'
 OutputData = ['BEM', 'q_profiles', 'Tepw', 'TKE_profiles', 'Tr_profiles', 'Tu_profiles', 'U_profiles', 'V_profiles']
