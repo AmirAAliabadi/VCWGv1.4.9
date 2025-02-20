@@ -25,7 +25,7 @@ class Whitehorse():
         # Monthly
         PerfMetricsMonthlyFileNameBase = r'Output/{}-2020/{}-2020-{}/Perf-Metrics-{}-2020-{}-{}.txt' \
             .format(City, City, BaseCaseName, City, BaseCaseName, {})
-        PerfMetricsMonthlyFileNameRetrofit = r'Output/{}-2020/{}-2020-{}-1/Perf-Metrics-{}-2020-{}-1-{}.txt' \
+        PerfMetricsMonthlyFileNameRetrofit = r'Output/{}-2020/{}-2020-{}/Perf-Metrics-{}-2020-{}-{}.txt' \
             .format(City, City, CaseName, City, CaseName, {})
 
         # Electricity price rates

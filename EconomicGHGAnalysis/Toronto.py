@@ -27,7 +27,7 @@ class Toronto():
         #Diurnal
         PerfMetricsDiurnalFileNameBase = r'Output/{}-2020/{}-2020-{}/Perf-Metrics-Diurnal{}-2020-{}-{}.txt'\
                                         .format(City,City,BaseCaseName,City,BaseCaseName,{})
-        PerfMetricsDiurnalFileNameRetrofit = r'Output/{}-2020/{}-2020-{}-1/Perf-Metrics-Diurnal{}-2020-{}-1-{}.txt'\
+        PerfMetricsDiurnalFileNameRetrofit = r'Output/{}-2020/{}-2020-{}/Perf-Metrics-Diurnal{}-2020-{}-{}.txt'\
                                             .format(City,City,CaseName,City,CaseName,{})
 
         # Electricity price rates

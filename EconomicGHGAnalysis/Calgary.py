@@ -27,7 +27,7 @@ class Calgary():
         # Input
         # Monthly
         PerfMetricsMonthlyFileNameBase = r'Output/{}-2020/{}-2020-{}/Perf-Metrics-{}-2020-{}-{}.txt'.format(City, City, BaseCaseName, City, BaseCaseName, {})
-        PerfMetricsMonthlyFileNameRetrofit = r'Output/{}-2020/{}-2020-{}-1/Perf-Metrics-{}-2020-{}-1-{}.txt'.format(City, City, CaseName, City, CaseName, {})
+        PerfMetricsMonthlyFileNameRetrofit = r'Output/{}-2020/{}-2020-{}/Perf-Metrics-{}-2020-{}-{}.txt'.format(City, City, CaseName, City, CaseName, {})
 
         # Electricity price rates
         AB_Residential_Electricity_Rates = pd.read_csv('resources/Economics/AB_Residential_Electricity_Rates.txt',delimiter=',')
