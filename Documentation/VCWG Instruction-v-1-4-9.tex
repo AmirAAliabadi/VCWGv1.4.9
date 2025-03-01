@@ -1,0 +1,163 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Template for a LaTex article in English.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt]{article}
+
+% AMS packages:
+\usepackage{amsmath, amsthm, amsfonts}
+
+\usepackage[top=1in, bottom=0.8in, left=0.8in, right=0.8in]{geometry}
+\usepackage{graphicx}  
+\usepackage{float}
+\usepackage{fontenc}
+\usepackage{sidecap}
+\usepackage{parskip}
+\usepackage{siunitx}
+\usepackage{hyperref}
+
+\setlength{\parskip}{1em}
+
+\linespread{1}
+
+% Shortcuts.
+% One can define new commands to shorten frequently used
+% constructions. As an example, this defines the R and Z used
+% for the real and integer numbers.
+%-----------------------------------------------------------------
+\def\RR{\mathbb{R}}
+\def\ZZ{\mathbb{Z}}
+
+% Similarly, one can define commands that take arguments. In this
+% example we define a command for the absolute value.
+% -----------------------------------------------------------------
+\newcommand{\abs}[1]{\left\vert#1\right\vert}
+
+% Operators
+% New operators must defined as such to have them typeset
+% correctly. As an example we define the Jacobian:
+% -----------------------------------------------------------------
+\DeclareMathOperator{\Jac}{Jac}
+
+%-----------------------------------------------------------------
+\title{User's Guide for the Vertical City Weather Generator
+	(VCWG v1.4.9)}
+\author{Amir A. Aliabadi and Ali Madadizadeh\\
+	Atmospheric Innovations Research (AIR) Laboratory \\
+School of Engineering, University of Guelph, Guelph, Canada \\
+\small \url{http://www.aaa-scientists.com} \\
+\small \href{mailto:aaliabad@uoguelph.ca}{aaliabad@uoguelph.ca} \\
+\small This document is typeset using \LaTeX \\
+}
+
+\begin{document}
+\maketitle
+
+\section{About VCWG}
+
+The Vertical City Weather Generator (VCWG) is a software that predicts the urban micro-climate and building performance variables in relation to a nearby rural climate given the urban characteristics. VCWG predicts vertical profiles of temperature, wind speed, humidity, and turbulence kinetic energy as well as the building energy performance metrics in an urban area. More details on the model can be found at the Atmospheric Innovations Research (AIR) laboratory website at www.aaa-scientists.com and corresponding publications \cite{Moradi2021a, Moradi2021b, Aliabadi2021b, Moradi2022, Aliabadi2023c, Safdari2024}.
+
+VCWG v1.4.9 is shared under the GNU General Public License Version 3. The terms and conditions of the license are accessible via: https://www.gnu.org/licenses/gpl-3.0.en.html. Please do not distribute VCWG v1.4.9 to third parties. Instead, please refer interested groups to the Atmospheric Innovations Research (AIR) Laboratory to acquire a copy of VCWG v1.4.9. Please consider offering co-authorship to AIR lab members if VCWG v1.4.9 is used significantly toward the completion of a project.
+
+VCWG v1.4.9 is similar to VCWG v1.4.7, with the additional capability that it can allow for economic, financial, and Greenhouse Gas (GHG) emissions analysis. This documentation accompanies a journal article under review. 
+
+\section{Setting the Climate Forcing Files}
+
+To run the VCWG, it is required to put the weather file (*.epw) of the region of interest in the directory e.g. ``/resources/epw/ERA5-Toronto-2020.epw". This file can be downloaded from EnergyPlus (https://energyplus.net/) or prepared using alternative datasets. In the released version of the software it is prepared using the ERA5 data product from the European Centre for Medium-Range Weather Forecasts (ECMWF) \cite{Aliabadi2023a}. Weather files for 10 Canadian cities are included in this distribution.
+
+\section{Setting Input Parameters}
+
+VCWG can take input parameters from the files located in the directory ``/resources/parameters/". These files contain the required parameters of the case study including urban characteristics, vegetation parameters, view factors, simulation parameters, and building renewable and alternative energy configurations. In the released version of the software there are 12 input parameter files for Toronto; ``initialize\_Toronto\_1.uwg" to ``initialize\_Toronto\_12.uwg" are associated with 12 months from January to December 2020. In these files, the starting month, starting day, and the duration of the simulation in number of days are set. For each month, it is desired to start the simulation 3 days before the start of the month and then discard the first 3 days of data as spin up data. For example, to simulate February, one can start from Month = 1 (January), Day = 29 (3 days before start of February), for nDay = 31 (28 days in February plus 3 days for spin up). The January simulation is an exception because the ERA5 dataset only contains data in 2020, so for January we cannot start 3 days earlier in 2019. The user is able to change the parameters to define and run a simulation of interest. 
+
+Currently many sets of input parameter files are distributed: ``Toronto-2020-Base-1'' lists parameters for a base case building with no retorifts. ``Toronto-2020-CR-1'' includes cool roofs. ``Toronto-2020-HP\&BITES-1'' includes a heat pump and building integrated thermal energy storage. ``Toronto-2020-PV-1'' includes photovoltaics. ``Toronto-2020-Retrofit-1'' includes building envelop retorifits. ``Toronto-2020-Retrofit\&BE-1'' includes all retrofit options: HP, BITES, PV, CR, and envelop. Each city has its own input paramter files based on the government incentivized programs.
+
+To consider the renewable energy options for the model, variable ``Adv\_ene\_heat\_mode'' should be set. To include only photovoltaic panels and wind turbine, this parameter should be set to 3. For inclusion of other renewable energy options (solar thermal, building integrated thermal energy storage, phase change materials, and energy recovery), this variable should be set to 1 for heating mode and 0 for cooling mode of operation. 
+
+To consider natural ventilation only, this variable should be set to 2. Additionally variable ``hvac'' should be set to 1. This variable specifies the ventilation system: 0 is used for fully conditioned system, and 1 is used for mixed mode natural ventilation and conditioned system. Other parameters needed for natural ventilation are related to windows: ``XWindowWidth'', ``XWindowHeight'', ``XWindowZCoord'', ``XWindowScreen'', ``XWindowOpenArea'', and the same variables in the Y direction. It is assumed that pairs of windows are used for natural ventilation on each pair of facades (X and Y directions).
+
+There are three more files in which input parameter specifications may be made. 1) To change the building envelop properties (e.g. resistance values) and HVAC equipment specification (e.g. coefficient of performance and thermal efficiency) the file ``LocationSummary'' in directories ``/resources/DOERefBuildings/BLD1'' through ``/resources/DOERefBuildings/BLD16'' should be modified corresponding to building type. Note that in the released version of the software the appropriate folder is ``/resources/DOERefBuildings/BLD6'' for mid rise apartment. Also note that only the last column of the spreadsheet is advised to be modified corresponding to custom values. i.e. the users are discouraged to change values in the other columns.  2) To change the ventilation and infiltration rates, the appropriate file ``ZoneSummary'' in directories ``/resources/DOERefBuildings/BLD1'' through ``/resources/DOERefBuildings/BLD16'' should be modified corresponding to building type. Note that in the released version of the software the appropriate folder is specified for the mid rise apartment as ``/resources/DOERefBuildings/BLD6''. 3) To change the set points for temperature and relative humidity, the appropriate file ``Schedules'' in directories ``/resources/DOERefBuildings/BLD1'' through ``/resources/DOERefBuildings/BLD16'' should be modified corresponding to building type. Note that in the released version of the software the appropriate folder is specified for the mid rise apartment as ``/resources/DOERefBuildings/BLD6''. The temperature and relative humidity set points are specified for building under either cooling or heating mode operation.
+
+For all climate zones, the building properties have been saved in corresponding sub-folders based on building codes/standards. Folder ``ZoneBaseModel'' archives all building properties used in the simulations for all 5 climate zones: 4, 5, 6, 7, and 8.
+
+If desired, new view factors can be obtained by running ``/UWG/Run\_RayTracing.py" and copy and paste the results from file e.g. ``/UWG/ViewFactor\_Toronto.txt" into the input file e.g. ``/resources/parameters/initialize\_Toronto\_0.uwg" or other initialization files.
+
+\section{Running VCWG}
+
+There are two options for running VCWG v1.4.9: the single and serial modes. The single mode only runs the model given one set of input parameters for a single month, while the serial mode allows running the model for 12 consecutive months, requiring 12 initialization files. For the single mode, in the python file ``/VCWG/VCWGv1.4.9.py" located in the main directory, the user is required to change the name of weather file and the name of the initialization file to the ones located in the directories of ``/resources/epw" and ``/resources/parameters/", respectively. This run produces hourly results that are saved in directory ``/Output/''. For the serial mode, in the python file ``/VCWG/VCWGv1.4.9Serial.py" located in the main directory, the user is required to specify 1 weather file and 12 input parameter files for each month of the year. In addition, the user should specify the 12 file names for the output files for building performance metrics for the entire month to be saved in directory ``/Output/''. In either simulation mode, it takes a few minutes to generate the output files located in the ``/Output/" directory. It is recommended to discard the first 72 hours (3 days) of simulation for each month (except for January) as spin-up period while considering results after this period. 
+
+``VCWGv1.4.9.py" and ``VCWGv1.4.9Serial.py'' are designed to run on Python 2.7.13 or 2.7.18. This version of Python can be downloaded from ``https://www.python.org/downloads/release/python-2713/" or ``https://www.python.org/downloads/release/python-2718/''. For example, for a 64-bit Windows operating system the installation file will be ``python-2.7.13.amd64" or ``python-2.7.18.amd64''. The following packages and versions can be used: numpy 1.14.3, scipy 1.1.0, matplotlib 2.2.2. Note that other packages
+may also work. ``UWG/Run\_RayTracing.py" is designed to run on Python 3.6.1 or later. This version of Python can be downloaded from the following link ``https://www.python.org/downloads/release/python-361/". For example for a
+64-bit Windows operating system the installation file will be ``python-3.6.1-amd64". The following packages and versions can be used: numpy 1.19.5, scipy 1.1.0, matplotlib 3.1.1. Note that other
+packages may also work.
+
+For retrofit analysis and estimation of costs and GHG emissions savings, the user needs to run VCWG twice. First we should run the base case. Go to ``VCWGv1.4.9Serial.py'' and input/enable the following lines:
+
+\begin{verbatim}
+City = 'Toronto'
+epw_filename = 'ERA5-{}-2020.epw'.format(City)
+initialization_name = 'initialize_{}'.format(City)
+case_name = '{}-2020-Base-1'.format(City)
+
+Months = ['Jan.txt', 'Feb.txt', 'Mar.txt', 'Apr.txt', 'May.txt', 'Jun.txt', 
+'Jul.txt', 'Aug.txt', 'Sep.txt', 'Oct.txt', 'Nov.txt', 'Dec.txt']
+OutputData = ['BEM', 'q_profiles', 'Tepw', 'TKE_profiles', 'Tr_profiles', 
+'Tu_profiles', 'U_profiles', 'V_profiles']
+
+#Advanced energy heat mode for 12 months: Heating mode (1),
+ cooling mode (0), no renewable energy (2), PV and Wind only (3)
+
+#Adv_ene_heat_mode = [1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1]
+Adv_ene_heat_mode = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+#Adv_ene_heat_mode = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+\end{verbatim}
+
+Copy the correct parameter files from ``resources/parameters/Toronto-2020/Toronto-2020-Base-1'' into ``resources/parameters''. Copy the correct DOERefBuildings files from ``resources/ZoneBaseModel/Zone\_4/Base-1/DOERefBuildings'' to the ``resources'' directory. 
+
+Next run ``VCWGv1.4.9.Serial.py'' to finish the base case. Move the results files from the ``Output'' directory to a new sub-directory ``Output/Toronto-2020/Toronto-2020-Base-1''.
+
+Next, we need to run a retrofit case, for example combining all retrofits. Go to ``VCWGv1.4.9Serial.py'' and input/enable the following lines:
+
+\begin{verbatim}
+City = 'Toronto'
+epw_filename = 'ERA5-{}-2020.epw'.format(City)
+initialization_name = 'initialize_{}'.format(City)
+case_name = '{}-2020-Retrofit&RE-1'.format(City)
+	
+Months = ['Jan.txt', 'Feb.txt', 'Mar.txt', 'Apr.txt', 'May.txt', 'Jun.txt', 
+'Jul.txt', 'Aug.txt', 'Sep.txt', 'Oct.txt', 'Nov.txt', 'Dec.txt']
+OutputData = ['BEM', 'q_profiles', 'Tepw', 'TKE_profiles', 'Tr_profiles', 
+'Tu_profiles', 'U_profiles', 'V_profiles']
+	
+#Advanced energy heat mode for 12 months: Heating mode (1),
+ cooling mode (0), no renewable energy (2), PV and Wind only (3)
+	
+Adv_ene_heat_mode = [1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1]
+#Adv_ene_heat_mode = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+#Adv_ene_heat_mode = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+\end{verbatim}
+
+Copy the correct parameter files from ``resources/parameters/Toronto-2020/Toronto-2020-Retrofit\&RE-1'' into ``resources/parameters''. Copy the correct DOERefBuildings files from ``resources/ZoneBaseModel/Zone\_4/Retrofit\&RE-1/DOERefBuildings'' to the ``resources'' directory.
+
+
+Next run ``VCWGv1.4.9.Serial.py'' to finish this case. Move the results files from the ``Output'' directory to a new sub-directory ``Output/Toronto-2020/Toronto-2020-Retrofit\&RE-1''.
+
+Next you can run the ``EconomicGHGAnalysis.py'' using the recently finished case for Toronto based on the ``Toronto-2020-Base-1'' case and the ``Toronto-2020-Retrofit\&RE-1'' case. Enter/adjust the following lines of code before running the script. 
+
+\begin{verbatim}
+# Define lists instead of sets to maintain order
+City = ['Toronto']
+CaseName = ['Retrofit&RE-1']
+Elec_PriceInc = [0.01, 0.05, 0.1]
+Gas_PriceInc = [0.01, 0.05, 0.1]
+
+BaseCaseName = 'Base-1'
+\end{verbatim}
+
+The output of this analysis will be generated and saved in the appropriate folders.
+
+\bibliography{Aliabadi}
+\bibliographystyle{apalike}
+
+\end{document}
