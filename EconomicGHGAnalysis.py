@@ -1,7 +1,7 @@
 # Calculate Annualized Marginal Cost and GHG Emissions
 # Ali Madadizadeh, Amir A. Aliabadi
 # Atmospheric Innovations Research (AIR) Laboratory, University of Guelph, Guelph, Canada
-# last update: 2024-02-28
+# last update: 2025-02-28
 
 import random
 import sys
@@ -22,12 +22,12 @@ from EconomicGHGAnalysis.Whitehorse import Whitehorse
 from EconomicGHGAnalysis.Montreal import Montreal
 
 # Define lists instead of sets to maintain order
-City = ['Toronto', 'Vancouver', 'Calgary', 'StJohns', 'Winnipeg', 'Saskatoon', 'Halifax', 'Montreal', 'Whitehorse', 'Yellowknife']
-CaseName = ['PV', 'Retrofit', 'HP&BITES', 'ST', 'WT', 'CR', 'Retrofit&RE']
+City = ['Toronto']
+CaseName = ['Retrofit&RE-1']
 Elec_PriceInc = [0.01, 0.05, 0.1]
 Gas_PriceInc = [0.01, 0.05, 0.1]
 
-BaseCaseName = 'Base'
+BaseCaseName = 'Base-1'
 
 for city in City:
 #---------------------------------------------------------1:Toronto-----------------------------------
@@ -52,7 +52,6 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
                         EconomicGHGAnalysis = Toronto(city, BaseCaseName, case, Scenario,
                                                                 NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                                 BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -78,7 +77,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Toronto(city, BaseCaseName, case, Scenario,
                                                                 NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                                 BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -105,7 +104,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Toronto(city, BaseCaseName, case, Scenario,
                                                                 NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                                 BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -132,7 +131,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Toronto(city, BaseCaseName, case, Scenario,
                                                                 NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                                 BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -159,7 +158,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Toronto(city, BaseCaseName, case, Scenario,
                                                                 NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                                 BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -189,7 +188,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Vancouver(city, BaseCaseName, case, Scenario,
                                                    NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                    BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -216,7 +215,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Vancouver(city, BaseCaseName, case, Scenario,
                                                       NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                       BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -243,7 +242,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Vancouver(city, BaseCaseName, case, Scenario,
                                                       NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                       BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -270,7 +269,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Vancouver(city, BaseCaseName, case, Scenario,
                                                       NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                       BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -300,7 +299,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Calgary(city, BaseCaseName, case, Scenario,
                                                    NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                    BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -327,7 +326,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Calgary(city, BaseCaseName, case, Scenario,
                                                       NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                       BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -354,7 +353,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Calgary(city, BaseCaseName, case, Scenario,
                                                       NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                       BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -384,7 +383,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Saskatoon(city, BaseCaseName, case, Scenario,
                                                    NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                    BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -411,7 +410,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Saskatoon(city, BaseCaseName, case, Scenario,
                                                       NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                       BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -438,7 +437,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Saskatoon(city, BaseCaseName, case, Scenario,
                                                       NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                       BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -465,7 +464,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Saskatoon(city, BaseCaseName, case, Scenario,
                                                       NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                       BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -495,7 +494,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Winnipeg(city, BaseCaseName, case, Scenario,
                                                    NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                    BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -522,7 +521,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Winnipeg(city, BaseCaseName, case, Scenario,
                                                       NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                       BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -549,7 +548,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Winnipeg(city, BaseCaseName, case, Scenario,
                                                       NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                       BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -576,7 +575,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Winnipeg(city, BaseCaseName, case, Scenario,
                                                       NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                       BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -605,7 +604,7 @@ for city in City:
                 for ElecPriceInc in Elec_PriceInc:
                         Scenario = 'SCC{}E'.format(ElecPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = StJohns(city, BaseCaseName, case, Scenario,
                                                    NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                    BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -631,7 +630,7 @@ for city in City:
                 for ElecPriceInc in Elec_PriceInc:
                         Scenario = 'SCC{}E'.format(ElecPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = StJohns(city, BaseCaseName, case, Scenario,
                                                       NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                       BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -657,7 +656,7 @@ for city in City:
                 for ElecPriceInc in Elec_PriceInc:
                         Scenario = 'SCC{}E'.format(ElecPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = StJohns(city, BaseCaseName, case, Scenario,
                                                       NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                       BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -687,7 +686,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Montreal(city, BaseCaseName, case, Scenario,
                                                    NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                    BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -714,7 +713,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Montreal(city, BaseCaseName, case, Scenario,
                                                       NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                       BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -741,7 +740,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Montreal(city, BaseCaseName, case, Scenario,
                                                       NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                       BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -768,7 +767,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Montreal(city, BaseCaseName, case, Scenario,
                                                       NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                       BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -798,7 +797,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Halifax(city, BaseCaseName, case, Scenario,
                                                    NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                    BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -825,7 +824,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Halifax(city, BaseCaseName, case, Scenario,
                                                       NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                       BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -852,7 +851,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Halifax(city, BaseCaseName, case, Scenario,
                                                       NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                       BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -879,7 +878,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Halifax(city, BaseCaseName, case, Scenario,
                                                       NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                       BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -906,7 +905,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Halifax(city, BaseCaseName, case, Scenario,
                                                       NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                       BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -936,7 +935,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Whitehorse(city, BaseCaseName, case, Scenario,
                                                    NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                    BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -963,7 +962,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Whitehorse(city, BaseCaseName, case, Scenario,
                                                    NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                    BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -989,7 +988,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Whitehorse(city, BaseCaseName, case, Scenario,
                                                    NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                    BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -1016,7 +1015,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Whitehorse(city, BaseCaseName, case, Scenario,
                                                       NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                       BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -1043,7 +1042,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Whitehorse(city, BaseCaseName, case, Scenario,
                                                       NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                       BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -1073,7 +1072,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Yellowknife(city, BaseCaseName, case, Scenario,
                                                    NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                    BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -1100,7 +1099,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Yellowknife(city, BaseCaseName, case, Scenario,
                                                       NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                       BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
@@ -1128,7 +1127,7 @@ for city in City:
                     for GasPriceInc in Gas_PriceInc:
                         Scenario = 'SCC{}E{}F'.format(ElecPriceInc, GasPriceInc)
 
-                        # Replace 'Toronto' with the actual function name that processes city data
+
                         EconomicGHGAnalysis = Yellowknife(city, BaseCaseName, case, Scenario,
                                                       NVSwitch, WindowDoorReplaceSwitch, STSwitch,
                                                       BITESSwitch, PCMSwitch, PVSwitch, WTSwitch,
