@@ -39,7 +39,6 @@ class StJohns():
         # ElecEmissionIntensity [gCO2e kW-h^-1]
         ElecEmissionIntensity = pd.read_csv('resources/Economics/ElecEmissionIntensity.txt', delimiter=',')
         CarbonIntensityProjection = pd.read_csv('resources/Economics/carbon_intensity_projection.txt', delimiter=',')
-        outputFileNameCO2Saving = 'Output/EconomicGHGAnalysisResults/{}_{}_{}CO2Saving.txt'.format(City, CaseName, Scenario)
 
         #Social Carbon Cost [$ Tonne CO2^-1]
         SCC = pd.read_csv('resources/Economics/SocialCarbonCost.txt', delimiter=',')
@@ -48,9 +47,9 @@ class StJohns():
         rhoCH4 = 0.668  # density of methane [kgCH4 m^-3] at 293 K and 1 ATM
 
         # Output
-        outputFileName = 'Output/EconomicGHGAnalysisResults/{}_{}_{}.txt'.format(City, CaseName, Scenario)
-        outputFileNamePayback = 'Output/EconomicGHGAnalysisResults/{}_{}_{}Payback.txt'.format(City, CaseName, Scenario)
-        outputFileNameCO2Saving = 'Output/EconomicGHGAnalysisResults/{}_{}_{}CO2Saving.txt'.format(City, CaseName, Scenario)
+        outputFileName = 'Output/{}_{}_{}.txt'.format(City, CaseName, Scenario)
+        outputFileNamePayback = 'Output/{}_{}_{}Payback.txt'.format(City, CaseName, Scenario)
+        outputFileNameCO2Saving = 'Output/{}_{}_{}CO2Saving.txt'.format(City, CaseName, Scenario)
 
         # Building envelope information
         A_building = 130  # Building footprint area [m^2]

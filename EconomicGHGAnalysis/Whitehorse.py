@@ -45,7 +45,6 @@ class Whitehorse():
         # ElecEmissionIntensity [gCO2e kW-h^-1]
         ElecEmissionIntensity = pd.read_csv('resources/Economics/ElecEmissionIntensity.txt', delimiter=',')
         CarbonIntensityProjection = pd.read_csv('resources/Economics/carbon_intensity_projection.txt', delimiter=',')
-        outputFileNameCO2Saving = 'Output/EconomicGHGAnalysisResults/{}_{}_{}CO2Saving.txt'.format(City, CaseName, Scenario)
 
         #Social Carbon Cost [$ Tonne CO2^-1]
         SCC = pd.read_csv('resources/Economics/SocialCarbonCost.txt', delimiter=',')
@@ -55,9 +54,9 @@ class Whitehorse():
         rhoDiesel = 0.82  # density of Diesel [kgDiesel L-1]
 
         # Output
-        outputFileName = 'Output/EconomicGHGAnalysisResults/{}_{}_{}.txt'.format(City, CaseName, Scenario)
-        outputFileNamePayback = 'Output/EconomicGHGAnalysisResults/{}_{}_{}Payback.txt'.format(City, CaseName, Scenario)
-        outputFileNameCO2Saving = 'Output/EconomicGHGAnalysisResults/{}_{}_{}CO2Saving.txt'.format(City, CaseName, Scenario)
+        outputFileName = 'Output/{}_{}_{}.txt'.format(City, CaseName, Scenario)
+        outputFileNamePayback = 'Output/{}_{}_{}Payback.txt'.format(City, CaseName, Scenario)
+        outputFileNameCO2Saving = 'Output/{}_{}_{}CO2Saving.txt'.format(City, CaseName, Scenario)
 
         # Constants for converting NG consumtion to Diesel consumtion
         NGEnergyContent = 35300                     # [BTU m^-3]

@@ -19,7 +19,7 @@ class FinalAnalysis():
              PresRetrofitElecCost, SalFactorBase, CIniBase, A_building, PWFFullPeriod, SalFactor, CIniRetrofit,
             CAnnOMBase, CAnnIniBase,CAnnIniRetrofit, CAnnOMRetrofit, Additional_Trees, CO2UptakeTree10Years,
            DiffFuelConsump, DiffElecConsump, ElecEmissionIntensity,Region, Payback, outputFileNamePayback,
-            outputFileName, Nyears, CRFFullPeriod,FuelCO2Saving,ElecCO2Saving,\
+            outputFileName, Nyears, CRFFullPeriod,FuelCO2Saving,ElecCO2Saving,
                  CO2Saving,outputFileNameCO2Saving,TotalCO2Sav,PresSCCSav):
 
 
