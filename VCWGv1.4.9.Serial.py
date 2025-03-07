@@ -17,7 +17,7 @@ case_name = '{}-2020-Retrofit&RE-1'.format(City)
 Months = ['Jan.txt', 'Feb.txt', 'Mar.txt', 'Apr.txt', 'May.txt', 'Jun.txt', 'Jul.txt', 'Aug.txt', 'Sep.txt', 'Oct.txt', 'Nov.txt', 'Dec.txt']
 OutputData = ['BEM', 'q_profiles', 'Tepw', 'TKE_profiles', 'Tr_profiles', 'Tu_profiles', 'U_profiles', 'V_profiles']
 
-#Advanced energy heat mode for 13 months: Heating mode (1), cooling mode (0), no renewable energy (2), PV and Wind only (3)
+#Advanced energy heat mode for 12 months: Heating mode (1), cooling mode (0), no renewable energy (2), PV and Wind only (3)
 
 Adv_ene_heat_mode = [1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1]
 #Adv_ene_heat_mode = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
@@ -30,8 +30,11 @@ for i in range(1,13,1):
     uwg = UWG(epw_filename, param_filename, '', '', '', '')
     uwg.run()
 
+    # Use for all cities
     BEMMonthly(Adv_ene_heat_mode[i-1], 'Output/Perf-Metrics-'+case_name+'-'+Months[i-1])
-    #BEMDiurnal(Adv_ene_heat_mode[i-1], 'Output/Perf-Metrics-Diurnal'+case_name+'-'+Months[i-1])
+
+    # Only use for Toronto, which has hourly electricity pricing
+    BEMDiurnal(Adv_ene_heat_mode[i-1], 'Output/Perf-Metrics-Diurnal-'+case_name+'-'+Months[i-1])
 
     # Rename all hourly files
     for output_type in OutputData:

@@ -24,8 +24,11 @@ OutputData = ['BEM', 'q_profiles', 'Tepw', 'TKE_profiles', 'Tr_profiles', 'Tu_pr
 uwg = UWG(epw_filename, param_filename,'','','','')
 uwg.run()
 
+# Use for all cities
 BEMMonthly(Adv_ene_heat_mode, 'Output/Perf-Metrics-' + case_name + '-' + Month)
-#BEMDiurnal(Adv_ene_heat_mode, 'Output/Perf-Metrics-Diurnal' + case_name + '-' + Month)
+
+# Only use for Toronto, which has hourly electricity pricing
+BEMDiurnal(Adv_ene_heat_mode, 'Output/Perf-Metrics-Diurnal-' + case_name + '-' + Month)
 
 # Rename all hourly files
 for output_type in OutputData:
