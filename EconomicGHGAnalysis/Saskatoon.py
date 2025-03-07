@@ -49,7 +49,6 @@ class Saskatoon():
         # Output
         outputFileName = 'Output/{}_{}_{}.txt'.format(City, CaseName, Scenario)
         outputFileNamePayback = 'Output/{}_{}_{}Payback.txt'.format(City, CaseName, Scenario)
-        outputFileNameCO2Saving = 'Output/{}_{}_{}CO2Saving.txt'.format(City, CaseName, Scenario)
 
         #A gigajoule of natural gas is about 25.5 cubic metres at standard conditions.
         GJtoM3 = 25.5
@@ -211,7 +210,6 @@ class Saskatoon():
         PresFedLoanPayment, PresProvLoanHELPPayment, FuelCO2Saving, ElecCO2Saving,TotalCO2Sav,PresSCCSav = [0] * 24
 
         Payback = []
-        CO2Saving = []
 
         AnnVegCO2Saving = Additional_Trees * (CO2UptakeTree10Years / 10)
 
@@ -263,7 +261,6 @@ class Saskatoon():
                     #Social Cost of Carbon
                     PresSCCSav = PresSCCSav + ((FuelCO2Saving + ElecCO2Saving + AnnVegCO2Saving/12) / 1000) * SCC.iloc[year-1,1] * \
                                   1 / ((1 + EffIntRate) ** year)
-                    #print(FuelCO2Saving,ElecCO2Saving, PresSCCSav)                                              
 
                     # Gas Consumption Cost
                     PresBaseGasCost = PresBaseGasCost + (SK_NG_Residential_Rates.iloc[0, 0] + ((PerfMetricsMonthlyBase[1] +\
@@ -310,23 +307,12 @@ class Saskatoon():
             print('Year, PaybackDiff = ', year, round(PaybackDiff))
 
             Payback.append(round(PaybackDiff))
-            AnnualCO2Saving = FuelCO2Saving + ElecCO2Saving
-            print('Year, AnnualCO2Saving = ', year, round(AnnualCO2Saving))
 
-            CO2Saving.append (round(AnnualCO2Saving))
         #Total Loan Payment
         PresLoanPayment = PresFedLoanPayment + PresProvLoanHELPPayment
 
-        #Total Energy Consumtion
-        DiffFuelConsump = TotalGasConsumpHeatBase + TotalGasConsumpWaterHeatBase - \
-                          TotalGasConsumpHeatRetrofit - TotalGasConsumpWaterHeatRetrofit
-        DiffElecConsump = TotalElecCoolDemandBase + TotalElecDomesticDemandBase - \
-                      (TotalElecCoolDemandRetrofit + TotalElecHeatDemandRetrofit + TotalElecDomesticDemandRetrofit - \
-                       TotalElecProducedPVRetrofit - TotalElecProducedWTRetrofit)
-
         Final_Analysis = FinalAnalysis(PresLoanPayment, PresBaseGasCost, PresRetrofitGasCost, PresBaseElecCost,
              PresRetrofitElecCost, SalFactorBase, CIniBase, A_building, PWFFullPeriod, SalFactor, CIniRetrofit,
-            CAnnOMBase, CAnnIniBase,CAnnIniRetrofit, CAnnOMRetrofit, Additional_Trees, CO2UptakeTree10Years,
-           DiffFuelConsump, DiffElecConsump, ElecEmissionIntensity,Region, Payback, outputFileNamePayback,
-            outputFileName, Nyears, CRFFullPeriod, FuelCO2Saving, ElecCO2Saving , CO2Saving,outputFileNameCO2Saving,TotalCO2Sav,PresSCCSav)
+            CAnnOMBase, CAnnIniBase,CAnnIniRetrofit, CAnnOMRetrofit, Payback, outputFileNamePayback,
+            outputFileName, Nyears, CRFFullPeriod, TotalCO2Sav,PresSCCSav)
 

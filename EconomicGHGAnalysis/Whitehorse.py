@@ -56,7 +56,6 @@ class Whitehorse():
         # Output
         outputFileName = 'Output/{}_{}_{}.txt'.format(City, CaseName, Scenario)
         outputFileNamePayback = 'Output/{}_{}_{}Payback.txt'.format(City, CaseName, Scenario)
-        outputFileNameCO2Saving = 'Output/{}_{}_{}CO2Saving.txt'.format(City, CaseName, Scenario)
 
         # Constants for converting NG consumtion to Diesel consumtion
         NGEnergyContent = 35300                     # [BTU m^-3]
@@ -202,7 +201,6 @@ class Whitehorse():
         PresFedLoanPayment, FuelCO2Saving, ElecCO2Saving,TotalCO2Sav,PresSCCSav= [0] * 23
 
         Payback = []
-        CO2Saving = []
 
         AnnVegCO2Saving = Additional_Trees * (CO2UptakeTree10Years / 10)
 
@@ -252,14 +250,10 @@ class Whitehorse():
                                     ElecEmissionIntensity.iloc[8, Region] / 1000
 
                     TotalCO2Sav = TotalCO2Sav + (FuelCO2Saving + ElecCO2Saving + AnnVegCO2Saving/12)
-                                                                                                                                                  
-                                                                                                                                                              
 
                     #Social Cost of Carbon
                     PresSCCSav = PresSCCSav + ((FuelCO2Saving + ElecCO2Saving + AnnVegCO2Saving/12) / 1000) * SCC.iloc[year-1,1] * \
                                   1 / ((1 + EffIntRate) ** year)
-                    #print(FuelCO2Saving,ElecCO2Saving, PresSCCSav)
-
 
 
                     # Diesel Consumption Cost
@@ -303,24 +297,12 @@ class Whitehorse():
             print('Year, PaybackDiff = ', year, round(PaybackDiff))
 
             Payback.append(round(PaybackDiff))
-            AnnualCO2Saving = FuelCO2Saving + ElecCO2Saving
-            print('Year, AnnualCO2Saving = ', year, round(AnnualCO2Saving))
-
-            CO2Saving.append (round(AnnualCO2Saving))
 
         # Total Loan Payment
         PresLoanPayment = PresFedLoanPayment
 
-        #Total Energy Consumtion
-        DiffFuelConsump = TotalDieselConsumpHeatBase + TotalDieselConsumpWaterHeatBase - \
-                          TotalDieselConsumpHeatRetrofit - TotalDieselConsumpWaterHeatRetrofit
-        DiffElecConsump = TotalElecCoolDemandBase + TotalElecDomesticDemandBase - \
-                      (TotalElecCoolDemandRetrofit + TotalElecHeatDemandRetrofit + TotalElecDomesticDemandRetrofit - \
-                       TotalElecProducedPVRetrofit - TotalElecProducedWTRetrofit)
 
         Final_Analysis = FinalAnalysis(PresLoanPayment, PresBaseDieselCost, PresRetrofitDieselCost, PresBaseElecCost,
              PresRetrofitElecCost, SalFactorBase, CIniBase, A_building, PWFFullPeriod, SalFactor, CIniRetrofit,
-            CAnnOMBase, CAnnIniBase,CAnnIniRetrofit, CAnnOMRetrofit, Additional_Trees, CO2UptakeTree10Years,
-           DiffFuelConsump, DiffElecConsump, ElecEmissionIntensity,Region, Payback, outputFileNamePayback,
-            outputFileName, Nyears, CRFFullPeriod , FuelCO2Saving, ElecCO2Saving, CO2Saving,outputFileNameCO2Saving,\
-            TotalCO2Sav,PresSCCSav)
+            CAnnOMBase, CAnnIniBase,CAnnIniRetrofit, CAnnOMRetrofit, Payback, outputFileNamePayback,
+            outputFileName, Nyears, CRFFullPeriod, TotalCO2Sav,PresSCCSav)
