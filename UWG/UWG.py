@@ -952,6 +952,7 @@ class UWG(object):
         TKE_hourly = numpy.zeros((len(Output_TimInd_new), self.nz))
         sensWaste_hourly = numpy.zeros(len(Output_TimInd_new))
         dehumDemand_hourly = numpy.zeros(len(Output_TimInd_new))
+        humDemand_hourly = numpy.zeros(len(Output_TimInd_new))
         QWater_hourly = numpy.zeros(len(Output_TimInd_new))
         QGas_hourly = numpy.zeros(len(Output_TimInd_new))
         sensCoolDemand_hourly = numpy.zeros(len(Output_TimInd_new))
@@ -1582,6 +1583,7 @@ class UWG(object):
                   # Save building energy terms
                   sensWaste_hourly[iO_new] = self.BEM[0].building.sensWaste
                   dehumDemand_hourly[iO_new] = self.BEM[0].building.dehumDemand
+                  humDemand_hourly[iO_new] = self.BEM[0].building.humDemand
                   QWater_hourly[iO_new] = self.BEM[0].building.QWater
                   QGas_hourly[iO_new] = self.BEM[0].building.QGas
                   sensCoolDemand_hourly[iO_new] = self.BEM[0].building.sensCoolDemand
@@ -1770,7 +1772,7 @@ class UWG(object):
         outputFile_BEM = open(timeseriesFilename, "w")
         outputFile_BEM.write("#### \t Vertical City Weather Generator (VCWG)  \t #### \n")
         outputFile_BEM.write("# Hourly building energy data \n")
-        outputFile_BEM.write("# 0:time [hr] 1:sensWaste (Total Sensible waste heat per unit building footprint area including cool heat dehum water and gas) [W m^-2] 2:dehumDemand (Latent heat demand for dehumidification of air per unit building footprint area) [W m^-2] 3:QWater (Water heating waste heat) [W m^-2] 4:QGas [W m^-2] "
+        outputFile_BEM.write("# 0:time [hr] 1:sensWaste (Total Sensible waste heat per unit building footprint area including cool heat dehum water and gas) [W m^-2] 2:latentDemand (dehumidification + humidification of air per unit building footprint area) [W m^-2] 3:QWater (Water heating waste heat) [W m^-2] 4:QGas [W m^-2] "
                              "5: sensCoolDemand (building sensible cooling demand per unit building footprint area) [W m^-2] 6:coolConsump (cooling energy consumption per unit building footprint area OR per unit floor area) [W m^-2] 7:sensHeatDemand (building sensible heating demand per unit building footprint area) [W m^-2] 8: heatConsump (heating energy consumption per unit floor area) [W m^-2] "
                              "9: waterHeatConsump (water heating energy consumption per unit floor area) [W m^-2] 10: Q_st (solar thermal) [W m^-2] 11: Q_he_st (solar thermal heat exchanger) [W m^-2] 12: Q_bites (energy storage) [W m^-2] 13: Q_hp (Heat flux from auxiliary HP) [W m^-2] 14: Q_recovery (Recovery heat) [W m^-2] "
                              "15: W_hp (Electricity consumed by auxiliary HP) [W m^-2] 16: W_pv (Electricity produced by PV) [W m^-2] 17: COP_hp (COP of auxiliary HP) "
@@ -1780,7 +1782,7 @@ class UWG(object):
                              "31: Canyon Temperature [K] 32: Infiltration Rate (includes windows) [ACH] or [hr^-1] 33: Ventilation Rate (forced air) [m^3 s^-1 m^-2]  34: HVAC Flag (0 = Fully Conditioned, 1 = Natural Ventilation and Conditioned) 35: Window State (0 = closed 1 = open) 36: indoorHum (indoor specific humidity) [kgv kga^-1] 37: Canyon Humidity [kgv kga^-1] \n")
         for i in range(0,len(Output_TimInd_new)):
             outputFile_BEM.write("%i %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %i %f %f %f \n"
-                                 % (i,sensWaste_hourly[i],dehumDemand_hourly[i],QWater_hourly[i],QGas_hourly[i],sensCoolDemand_hourly[i],
+                                 % (i,sensWaste_hourly[i],dehumDemand_hourly[i]+humDemand_hourly[i],QWater_hourly[i],QGas_hourly[i],sensCoolDemand_hourly[i],
                                     coolConsump_hourly[i],sensHeatDemand_hourly[i], heatConsump_hourly[i], waterHeatConsump_hourly[i],
                                     Q_st_hourly[i],Q_he_st_hourly[i],Q_bites_hourly[i], Q_hp_hourly[i], Q_recovery_hourly[i],
                                     W_hp_hourly[i], W_pv_hourly[i], COP_hp_hourly[i],
