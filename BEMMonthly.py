@@ -21,7 +21,7 @@ def BEMMonthly(Adv_ene_heat_mode, outputFileName):
 
     Hour = data[:,0]
     sensWaste = data[:,1]
-    latentDemand = data[:,2]
+    latDemand = data[:,2]
     QWater = data[:,3]
     QGas = data[:,4]
     sensCoolDemand = data[:,5]
