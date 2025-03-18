@@ -21,7 +21,7 @@ def BEMMonthly(Adv_ene_heat_mode, outputFileName):
 
     Hour = data[:,0]
     sensWaste = data[:,1]
-    dehumDemand = data[:,2]
+    latentDemand = data[:,2]
     QWater = data[:,3]
     QGas = data[:,4]
     sensCoolDemand = data[:,5]
@@ -84,7 +84,7 @@ def BEMMonthly(Adv_ene_heat_mode, outputFileName):
         TotalElecProducedPV = 0
         TotalElecProducedWT = 0
 
-        TotalDehumDemand = (numpy.sum(abs(dehumDemand[SpinUpHours:]))) / 1000
+        TotalLatDemand = (numpy.sum(abs(latDemand[SpinUpHours:]))) / 1000
 
     # PV and wind energy only
     if Adv_ene_heat_mode == 3:
@@ -107,7 +107,7 @@ def BEMMonthly(Adv_ene_heat_mode, outputFileName):
         TotalElecProducedPV = numpy.sum(W_pv[SpinUpHours:]) / 1000
         TotalElecProducedWT = numpy.sum(W_wt[SpinUpHours:]) / 1000
 
-        TotalDehumDemand = (numpy.sum(abs(dehumDemand[SpinUpHours:]))) / 1000
+        TotalLatDemand = (numpy.sum(abs(latDemand[SpinUpHours:]))) / 1000
 
     # Renewable energy system under heating mode
     if Adv_ene_heat_mode == 1:
@@ -130,7 +130,7 @@ def BEMMonthly(Adv_ene_heat_mode, outputFileName):
         TotalElecProducedPV = numpy.sum(W_pv[SpinUpHours:]) / 1000
         TotalElecProducedWT = numpy.sum(W_wt[SpinUpHours:]) / 1000
 
-        TotalDehumDemand = (numpy.sum(abs(dehumDemand[SpinUpHours:]))) / 1000
+        TotalLatDemand = (numpy.sum(abs(latDemand[SpinUpHours:]))) / 1000
 
     # Renewable energy system under cooling mode
     elif Adv_ene_heat_mode == 0:
@@ -153,7 +153,7 @@ def BEMMonthly(Adv_ene_heat_mode, outputFileName):
         TotalElecProducedPV = numpy.sum(W_pv[SpinUpHours:]) / 1000
         TotalElecProducedWT = numpy.sum(W_wt[SpinUpHours:]) / 1000
 
-        TotalDehumDemand = (numpy.sum(abs(dehumDemand[SpinUpHours:]))) / 1000
+        TotalLatDemand = (numpy.sum(abs(latDemand[SpinUpHours:]))) / 1000
 
     outputFile = open(outputFileName, "w")
 
@@ -163,7 +163,7 @@ def BEMMonthly(Adv_ene_heat_mode, outputFileName):
                                 5: TotalSensWaterHeatDemand [kW hr m-2] \t 6: TotalGasConsumpWaterHeat [m3 m-2] \t \
                                 7: TotalElecDomesticDemand [kW hr m-2] \t 8: TotalElecProducedPV [kW hr m-2] \t 9: TotalElecProducedWT [kW hr m-2] \
                                 10: CanyonTemp [k] \t 11: Infiltration [ACH] \t 12: Ventilation [m3 s-1 m-2] \t 13: HVACFlag [-] \t 14: WindowState [-] \
-                                14: TotalDehum/HumDemand [kW hr m-2] \n")
+                                14: TotalLatDemand [kW hr m-2] \n")
 
     # Write data
     outputFile.write("%f \t %f \t %f \t %f \t %f \t %f \t %f \t %f \t %f \t %f \t %f \t %f \t %f \t %f \t %f \t %f \n"
@@ -172,6 +172,6 @@ def BEMMonthly(Adv_ene_heat_mode, outputFileName):
                         TotalSensWaterHeatDemand, TotalGasConsumpWaterHeat,
                         TotalElecDomesticDemand, TotalElecProducedPV, TotalElecProducedWT,
                         TCanyon_average, infil_average, vent_average, hvac_flag_average, window_state_average,
-                        TotalDehumDemand))
+                        TotalLatDemand))
 
     outputFile.close()
