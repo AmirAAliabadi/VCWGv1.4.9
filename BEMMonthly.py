@@ -84,7 +84,7 @@ def BEMMonthly(Adv_ene_heat_mode, outputFileName):
         TotalElecProducedPV = 0
         TotalElecProducedWT = 0
 
-        TotalLatDemand = (numpy.sum(abs(latDemand[SpinUpHours:]))) / 1000
+        TotalLatDemand = (numpy.sum(latDemand[SpinUpHours:])) / 1000
 
     # PV and wind energy only
     if Adv_ene_heat_mode == 3:
@@ -107,7 +107,7 @@ def BEMMonthly(Adv_ene_heat_mode, outputFileName):
         TotalElecProducedPV = numpy.sum(W_pv[SpinUpHours:]) / 1000
         TotalElecProducedWT = numpy.sum(W_wt[SpinUpHours:]) / 1000
 
-        TotalLatDemand = (numpy.sum(abs(latDemand[SpinUpHours:]))) / 1000
+        TotalLatDemand = (numpy.sum(latDemand[SpinUpHours:])) / 1000
 
     # Renewable energy system under heating mode
     if Adv_ene_heat_mode == 1:
@@ -130,7 +130,7 @@ def BEMMonthly(Adv_ene_heat_mode, outputFileName):
         TotalElecProducedPV = numpy.sum(W_pv[SpinUpHours:]) / 1000
         TotalElecProducedWT = numpy.sum(W_wt[SpinUpHours:]) / 1000
 
-        TotalLatDemand = (numpy.sum(abs(latDemand[SpinUpHours:]))) / 1000
+        TotalLatDemand = (numpy.sum(latDemand[SpinUpHours:])) / 1000
 
     # Renewable energy system under cooling mode
     elif Adv_ene_heat_mode == 0:
@@ -153,7 +153,7 @@ def BEMMonthly(Adv_ene_heat_mode, outputFileName):
         TotalElecProducedPV = numpy.sum(W_pv[SpinUpHours:]) / 1000
         TotalElecProducedWT = numpy.sum(W_wt[SpinUpHours:]) / 1000
 
-        TotalLatDemand = (numpy.sum(abs(latDemand[SpinUpHours:]))) / 1000
+        TotalLatDemand = (numpy.sum(latDemand[SpinUpHours:])) / 1000
 
     outputFile = open(outputFileName, "w")
 
