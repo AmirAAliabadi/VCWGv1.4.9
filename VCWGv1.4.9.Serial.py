@@ -34,7 +34,7 @@ for i in range(1,13,1):
     BEMMonthly(Adv_ene_heat_mode[i-1], 'Output/Perf-Metrics-'+case_name+'-'+Months[i-1])
 
     # Only use for Toronto, which has hourly electricity pricing
-    BEMDiurnal(Adv_ene_heat_mode[i-1], 'Output/Perf-Metrics-Diurnal-'+case_name+'-'+Months[i-1])
+    # BEMDiurnal(Adv_ene_heat_mode[i-1], 'Output/Perf-Metrics-Diurnal-'+case_name+'-'+Months[i-1])
 
     # Rename all hourly files
     for output_type in OutputData:
